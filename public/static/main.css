@@ -1,0 +1,245 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+*/
+
+body{
+    text-align:center;
+    font-family: sans-serif;
+    margin-top: 80px;}
+
+a,
+a:hover,
+a:visited,
+a:active{
+	text-decoration:underscore;
+	color:#000;
+}
+
+#content{
+    text-align: left;
+    margin: 40px auto 0;
+    height:450px;
+    max-width:1050px;
+}
+#sshacks{
+	margin-top:-29px;
+	margin-bottom: -31px;
+}
+#sshacks-container{
+	display:block;
+	overflow:hidden;
+}
+
+#logo{
+	width:70%;
+	max-width:600px;
+	margin-top:7%;
+	margin-bottom:20px;}
+    font-size: 16px;
+
+h1{
+   font-size:180%;
+   margin-top:80px;
+}
+h2{
+  font-size: 1.3em;
+  font-weight: 300;
+  margin-top: 43px;
+}
+#topm{
+    font-size: 14px;
+    display: block;
+    top: 0;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    color: #FFF;
+    background:#000;
+    /* border-bottom:2px solid #292929; */
+}
+
+#topm a, 
+#topm a:visited, 
+#topm a:active{
+      color:rgb(14, 93, 196);
+      text-decoration:none;
+  }
+#topm a:active{
+    font-weight:bold;
+}
+#topm a{ 
+    display: inline-block;
+    padding: 11px 0 0;
+}
+#topm #rightm a{ 
+    padding: 10px 6px;
+    margin-right:2px;
+}
+
+.logo{font-family: monospace;}
+
+#leftm{display:block;float:left;margin-left:24px;}
+#rightm{display:block;float:right;margin-right:12px;padding:0;}
+
+@media all and (max-width: 1302px) {
+  #topm {text-align:center;}
+  #leftm {float:none;margin:10px auto;padding-bottom:10px;}
+  #rightm {float:none;margin:0px auto;padding-top:10px;border-top:1px solid #717171;line-height: 1.7;}
+  a.logo{font-size: 140%;}
+ h1{margin-top:160px;}
+}
+.addbtn{
+    display: inline-block;
+    border: 1px solid #848484;
+    padding: 2px 4px!important;
+    margin-left: 10px;
+    font-size: 13px;
+    border-radius:2px;
+}
+.addbtn+.addbtn{
+   margin-left: 4px;
+}
+.addbtn:hover{
+    border: 1px solid #FFF;
+    background:#FFF;
+    color:#000!important;
+}
+table.minimalistBlack {
+  border: 0px solid #000000;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.minimalistBlack td, table.minimalistBlack th {
+  border: 1px solid #000000;
+  padding: 8px 9px;
+}
+table.minimalistBlack tbody td {
+  font-size: 13px;
+}
+table.minimalistBlack thead {
+  background: #CFCFCF;
+  background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+  background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+  background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);
+  border-bottom: 2px solid #000000;
+}
+table.minimalistBlack thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000000;
+  text-align: left;
+}
+table.minimalistBlack tfoot td {
+  font-size: 14px;
+}
+.total{
+	font-weight:bold;
+	text-align:right!important;
+}
+td.total{
+	font-size:15px;
+}
+.symbol{
+	font-weight:bold;
+}
+.symbol:before {
+  content: "$";
+}
+table.minimalistBlack tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  background: #EBEBEB;
+  color: #000000;
+  border-top: 3px solid #000000;
+}
+table.minimalistBlack tfoot td {
+  font-size: 14px;
+}
+
+.small-print{
+  opacity: .4;
+  font-size: 65%;
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+  display: block;
+  line-height: 1.55;
+}
+.cc{opacity:.9;}
+
+/*
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+*/
+
+/* Change the link color to #111 (black) on hover */
+/*
+li a:hover {
+  background-color: rgb(24, 174, 211);
+}
+*/

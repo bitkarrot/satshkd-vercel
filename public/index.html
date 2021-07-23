@@ -1,0 +1,240 @@
+<!doctype html>
+<head>
+  <title>HKDSAT</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="/static/skeleton.css">
+  <link rel="stylesheet" type="text/css" href="/static/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/static/metricsgraphics.css">
+  <link rel="shortcut icon" type="image/png" href="/static/favicon.png"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway&display=swap" rel="stylesheet">
+  <script src="/static/jquery.min.js"></script>
+  <script src="/static/d3.v4.min.js"></script>
+  <script src="/static/metricsgraphics.js"></script>
+
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+  <header class="p-1 bg-dark text-white">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+     <div class="container-fluid">
+       <a class="navbar-brand" href="http://bitcoin.org.hk">
+         <img src="/static/bahk-logo-big-white.svg" alt="Bitcoin HK Logo" width="60">
+       </a>
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="true" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarText">
+       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+           <li class="nav-item">
+             <a class="nav-link active px-2 text-secondary" aria-current="page" href="http://sats.bitcoin.org.hk">HKDsat</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link px-2 text-white" href="http://blocks.bitcoin.org.hk">Bitcoin Explorer</a>
+           </li>
+          <!--
+           <li class="nav-item">
+             <a class="nav-link px-2 text-white" href="#">DCA</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link px-2 text-white" href="#">Lightning</a>
+           </li>
+          -->
+           <li class="nav-item">
+             <a class="nav-link px-2 text-white" href="http://bitcoin.org.hk/contact/">Contact Us</a>
+           </li>
+           <li class="nav-item"> 
+           </li>
+         </ul>
+         <span class="navbar-item" style="color: #fff">
+           <a class="px-2" href="{{ desc[6] }}" style="color: rgb(6, 168, 231)"> {{ desc[7] }} </a> | 
+           <a class="px-2" href="{{ desc[8] }}" style="color: rgb(6, 168, 231)"> {{ desc[9] }}</a>   
+         </span>
+       </div>
+     </div>    
+   </nav>
+ </header>
+ 
+  <div class="container" style="margin-top: 40px;">
+    <div class="row">
+      <center><h3> {{ desc[0] }} <span id="current"></span> sats</h3></center>
+      <script>
+      var currentPrice = 0; var ws_ticker_id, t;
+   
+      document.addEventListener('DOMContentLoaded', function() { startWebSocket(); }, false);
+   
+      function startWebSocket(){
+        t=new WebSocket("wss://api-pub.bitfinex.com/ws/2");
+   
+        t.onmessage=function(e){
+          var i=JSON.parse(e.data);
+          if(i.event === 'subscribed' && i.channel == 'ticker'){ ws_ticker_id = i.chanId; }
+          if(ws_ticker_id == i[0]){ updatePrice(i);	}				
+        }
+   
+        t.onopen=function(e){
+          console.log('Web socket open.');			
+          t.send(JSON.stringify({"event":"subscribe", "channel": "ticker", "symbol": "BTCUSD"}));
+          setPingTimer();
+        }
+   
+        t.onclose=function(e){
+          console.log('Web socket closed. Attempting to reopen.');
+          setTimeout(function(){ startWebSocket(); }, 2000);
+        }	
+   
+        t.onerror=function(e){	console.log(e);		}
+      }
+   
+      function setPingTimer() { setInterval(function(){ t.send("ping"); }, 10000); 	}
+    
+      function updatePrice(i){
+        if(Array.isArray(i)){			
+          i.forEach(function(item){			
+            if(Array.isArray(item)){ 
+            var btc_price = item[0]; 
+            currentPrice = Math.round((1/btc_price)*100000000/7.75); // satoshis per HKD dollar
+            document.title = currentPrice.toLocaleString() + " sats";
+	   document.querySelector('#current').textContent = currentPrice.toLocaleString();
+		
+            }				
+          });		
+        }	
+      }
+   
+      </script>
+
+      <div id='historical'>
+      </div>
+      
+      <div class="container">
+
+      <table class="u-full-width">
+        <thead>
+          <tr>
+      	    <th>{{ desc[2] }} </th>
+            <th>{{ desc[3] }} </th>
+            <th>{{ desc[4] }} </th>
+          </tr>
+		    </thead>
+        <tbody>
+          {% for dict_item in my_list %}
+          <tr>
+           {% for key, value in dict_item.items() %}
+            <td>{{value}}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      
+  <p style="font-size: small;">
+    * {{ desc[5] }}
+	</p>
+	</div>
+    <script>
+    d3.json('/static/hkd_historical', function(data) {
+        data = MG.convert.date(data, 'date');
+
+		var windowWidth = $(window).width();
+
+		if (windowWidth < 550) { 
+		  var graphHeight = windowWidth / 1.9047;
+		} else if (windowWidth < 1200) {  
+		  var graphHeight = windowWidth * 0.8 / 1.9047;
+		} else { 
+		  var graphHeight = 500;
+		}
+
+        var qhLink = function() {
+            window.open('https://en.bitcoin.it/wiki/Controlled_supply', '_blank');
+        };
+        
+		var qeLink = function() {
+            window.open('https://en.wikipedia.org/wiki/Quantitative_easing', '_blank');
+        };
+
+        var markers = [{
+            'date': new Date('2008-11-25T00:00:00.000Z'),
+            'label': 'QE1',
+	        'click': qeLink,
+        }, {
+            'date': new Date('2010-11-03T00:00:00.000Z'),
+            'label': 'QE2',
+	        'click': qeLink,
+        }, {
+            'date': new Date('2012-09-13T00:00:00.000Z'),
+            'label': 'QE3',
+	        'click': qeLink,
+        }, {
+            'date': new Date('2012-11-28T00:00:00.000Z'),
+            'label': 'QH1',
+	        'click': qhLink,
+        }, {
+            'date': new Date('2016-07-09T00:00:00.000Z'),
+            'label': 'QH2',
+	        'click': qhLink,
+        }, {
+            'date': new Date('2019-10-11T00:00:00.000Z'),
+            'label': 'QE4',
+	        'click': qeLink,
+        }, {
+            'date': new Date('2020-05-11T00:00:00.000Z'),
+            'label': 'QH3',
+	        'click': qeLink,
+        }];
+
+        MG.data_graphic({
+            title: '{{ desc[1] }}',
+            data: data,
+            full_width: true,
+            height: graphHeight,
+			left: 52,
+            area: true,
+            color: '#FF9900',
+            markers: markers,
+            target: document.getElementById('historical'),
+            xax_count: 10,
+            yax_count: 8,
+            x_accessor: 'date',
+            y_accessor: 'sathkd_rate',
+            y_scale_type: 'log',
+            y_extended_ticks: true,
+            yax_units: ' sats',
+            yax_units_append: true,
+        });
+
+        $(document).ready(function() {
+          d3.select('svg')
+		  .data(data)
+          .append('defs')
+
+          .append('pattern')
+          .attr('id', 'losermoney')
+          .attr('patternUnits', 'userSpaceOnUse')
+          .attr('width', '100%')
+          .attr('height', '100%')
+
+          .append('image')
+          .attr('width', '100%')
+          .attr('height', '100%')
+          .attr('xlink:href', '/static/assets/10hkd.jpg');
+
+          $('svg path')
+          .css('opacity', 1)
+          .css('stroke', 'green')
+          .attr('fill', 'url(#losermoney)');
+        });
+        
+      });
+    </script>
+
+</body>
+

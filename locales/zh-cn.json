@@ -1,0 +1,12 @@
+{
+    "Title": "1 港币现值 ",
+    "subtitle" : "HKDSAT 过往表现",
+    "date" : "日期", 
+    "price" : "价格",
+    "percentchange" : "百分比变化",
+    "footnote" : "来自usdsat.com的数据源",
+    "lang1_link": "/",
+    "lang1": "EN",
+    "lang2_link": "/zh-hk/",
+    "lang2": "中文(香港)" 
+}
