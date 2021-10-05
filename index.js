@@ -62,18 +62,17 @@ app.use(express.static(path.join(__dirname, 'public', 'css')));
 
 app.get('/', function(req, res) {
     //res.render('test', enjson)
-    res.redirect('/sats.html');
     //    res.render('test', { layout: 'main' });
+    res.redirect('/en');
 });
 
-
 app.get('/en', function(req, res) {
-    res.render('test', enjson)
+    res.render('sats', enjson)
         //    res.render('test', enjson)
 });
 
 app.get('/zh-cn', function(req, res) {
-    res.render('test', zhcnjson)
+    res.render('sats', zhcnjson)
 });
 
 app.get('/zh-hk', function(req, res) {
