@@ -1,4 +1,13 @@
 {
+    "post": {
+        "author": "Janith Kasun",
+        "image": "https://picsum.photos/500/500",
+        "comments": [
+            "This is the first comment",
+            "This is the second comment",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec fermentum ligula. Sed vitae erat lectus."
+        ]
+    },
     "layout": "main",
     "Title": "1 HK dollar is currently worth ",
     "subtitle": "HKDSAT Historical Performance",

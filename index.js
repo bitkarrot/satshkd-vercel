@@ -60,7 +60,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/en', function(req, res) {
-    res.render('sats', enjson)
+    res.render('test', enjson)
 });
 
 app.get('/zh-cn', function(req, res) {
