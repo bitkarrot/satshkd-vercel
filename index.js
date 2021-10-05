@@ -17,11 +17,11 @@ const zhcnjson = require('./locales/zh-cn.json');
 const zhhkjson = require('./locales/zh-hk.json');
 const enjson = require('./locales/en.json');
 
-app.set('view engine', 'html');
+app.set('view engine', 'hbs');
 
-app.engine('html', handlebars({
+app.engine('hbs', handlebars({
     layoutsDir: __dirname + '/views/layouts',
-    extname: 'html',
+    extname: 'hbs',
 }));
 
 //Serves static files (we need it to import a css file)
@@ -55,8 +55,9 @@ app.use(express.static(path.join(__dirname, 'public', 'css')));
 app.use(express.json({ extended: false }));
 
 app.get('/', function(req, res) {
-    res.redirect('/en');
-    //res.render('index', { layout: 'main' });
+    res.render('test', enjson)
+        //    res.redirect('/en');
+        //res.render('index', { layout: 'main' });
 });
 
 app.get('/en', function(req, res) {
