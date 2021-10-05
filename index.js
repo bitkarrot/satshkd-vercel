@@ -18,6 +18,7 @@ const zhhkjson = require('./locales/zh-hk.json');
 const enjson = require('./locales/en.json');
 
 app.set('view engine', 'hbs');
+app.set('views', __dirname + '/views')
 
 app.engine('hbs', handlebars({
     layoutsDir: __dirname + '/views/layouts',
@@ -39,8 +40,8 @@ app.use(logger('dev'));
 // will look for "./public/js/app.js".
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'views')));
-app.use(express.static(path.join(__dirname, 'views/layouts')));
+//app.use(express.static(path.join(__dirname, 'views')));
+//app.use(express.static(path.join(__dirname, 'views/layouts')));
 
 
 // if you wanted to "prefix" you may use
@@ -76,7 +77,14 @@ app.get('/zh-cn', function(req, res) {
 });
 
 app.get('/zh-hk', function(req, res) {
-    res.render('test', zhhkjson)
+    res.render('sats', zhhkjson)
+});
+
+app.get('/test', (req, res) => {
+    const path = '/en';
+    res.setHeader('Content-Type', 'text/html');
+    res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
+    res.end(`Hello! Go to item: <a href="${path}">${path}</a>`);
 });
 
 
