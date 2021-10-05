@@ -143,18 +143,15 @@
                             <th>{{ percentchange }} </th>
                         </tr>
                     </thead>
-                    <!--
                     <tbody>
-                        {% for dict_item in my_list %}
+                        {{#each yeardata}}
                         <tr>
-                            {% for key, value in dict_item.items() %}
-                            <td>{{value}}</td>
-                            {% endfor %}
+                            <td>{{ this.year }}</td>
+                            <td>{{ this.sats }}</td>
+                            <td>{{ this.percent }}</td>
                         </tr>
-                        {% endfor %}
+                         {{/each}}
                     </tbody>
-                                        -->
-
                 </table>
 
 

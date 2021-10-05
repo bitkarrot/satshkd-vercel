@@ -5,6 +5,29 @@
 <h1>{{ Title }} </h1>
 <h4>{{ subtitle }} </h4>
 
+  <table class="u-full-width">
+                    <thead>
+                        <tr>
+                            <th>{{ date }} </th>
+                            <th>{{ price }} </th>
+                            <th>{{ percentchange }} </th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                             {{#each yeardata}}
+                        <tr>
+                            <td>{{ this.year }}</td>
+                            <td>{{ this.sats }}</td>
+                            <td>{{ this.percent }}</td>
+                            {{/each}}
+                        </tr>
+                    </tbody>
+                                        
+
+                </table>
+
+
 <div class="posts">
     <div class="row justify-content-center">
         <div class="col-lg-7" style="margin-top: 50px;">
