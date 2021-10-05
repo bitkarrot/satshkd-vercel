@@ -11,15 +11,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/bitkarrot/express-vercel-example.git"
+        "url": "git+https://github.com/bitkarrot/satshkd-vercel.git"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/bitkarrot/express-vercel-example/issues"
+        "url": "https://github.com/bitkarrot/satshkd-vercel/issues"
     },
-    "homepage": "https://github.com/bitkarrot/express-vercel-example#readme",
+    "homepage": "https://github.com/bitkarrot/satshkd-vercel#readme",
     "dependencies": {
         "express": "^4.17.1",
         "express-handlebars": "^5.3.4",

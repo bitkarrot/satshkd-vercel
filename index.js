@@ -54,14 +54,17 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public', 'css')));
 app.use(express.json({ extended: false }));
 
+/*
 app.get('/', function(req, res) {
-    res.render('test', enjson)
-        //    res.redirect('/en');
-        //res.render('index', { layout: 'main' });
+    //res.render('test', enjson)
+    //    res.redirect('/en');
+    res.render('test', { layout: 'main' });
 });
+*/
 
 app.get('/en', function(req, res) {
-    res.render('test', enjson)
+    res.render
+        //    res.render('test', enjson)
 });
 
 app.get('/zh-cn', function(req, res) {
