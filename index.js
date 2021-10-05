@@ -7,7 +7,25 @@ var express = require("express");
 var logger = require('morgan');
 var path = require('path');
 var app = express();
-const product = require("./api/product");
+const port = 3000;
+
+//const product = require("./api/product");
+//app.use("/api/product", product);
+
+const handlebars = require('express-handlebars');
+const zhcnjson = require('./locales/zh-cn.json');
+const zhhkjson = require('./locales/zh-hk.json');
+const enjson = require('./locales/en.json');
+
+app.set('view engine', 'html');
+
+app.engine('html', handlebars({
+    layoutsDir: __dirname + '/views/layouts',
+    extname: 'html',
+}));
+
+//Serves static files (we need it to import a css file)
+app.use(express.static('public'))
 
 // log requests
 app.use(logger('dev'));
@@ -34,11 +52,25 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 // multiple times! Here we're passing "./public/css",
 // this will allow "GET /style.css" instead of "GET /css/style.css":
 app.use(express.static(path.join(__dirname, 'public', 'css')));
-
 app.use(express.json({ extended: false }));
-app.use("/api/product", product);
 
-app.listen(3000);
-console.log('listening on port 3000');
-console.log('try:');
-console.log('  GET /index.html');
+app.get('/', function(req, res) {
+    res.redirect('/en');
+    //res.render('index', { layout: 'main' });
+});
+
+app.get('/en', function(req, res) {
+    res.render('sats', enjson)
+});
+
+app.get('/zh-cn', function(req, res) {
+    res.render('sats', zhcnjson)
+});
+
+app.get('/zh-hk', function(req, res) {
+    res.render('sats', zhhkjson)
+});
+
+
+//Makes the app listen to port 3000
+app.listen(port, () => console.log(`App listening to port ${port}`));

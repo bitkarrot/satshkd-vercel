@@ -1,12 +1,13 @@
 {
+    "layout": "main",
     "Title": "1 HK dollar is currently worth ",
-    "subtitle" : "HKDSAT Historical Performance",
-    "date" : "Date", 
-    "price" : "Price",
-    "percentchange" : "Percent Change",
-    "footnote" : "data source from usdsat.com, adapted for HKD",
+    "subtitle": "HKDSAT Historical Performance",
+    "date": "Date",
+    "price": "Price",
+    "percentchange": "Percent Change",
+    "footnote": "data source from usdsat.com, adapted for HKD",
     "lang1_link": "/zh-cn/",
     "lang1": "中文(中国)",
     "lang2_link": "/zh-hk/",
-    "lang2": "中文(香港)" 
+    "lang2": "中文(香港)"
 }
