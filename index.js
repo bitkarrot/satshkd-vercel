@@ -21,6 +21,7 @@ app.set('view engine', 'hbs');
 
 app.engine('hbs', handlebars({
     layoutsDir: __dirname + '/views/layouts',
+    defaultLayout: 'main',
     extname: 'hbs',
 }));
 
@@ -38,6 +39,9 @@ app.use(logger('dev'));
 // will look for "./public/js/app.js".
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, 'views/layouts')));
+
 
 // if you wanted to "prefix" you may use
 // the mounting feature of Connect, for example
@@ -52,27 +56,27 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 // multiple times! Here we're passing "./public/css",
 // this will allow "GET /style.css" instead of "GET /css/style.css":
 app.use(express.static(path.join(__dirname, 'public', 'css')));
-app.use(express.json({ extended: false }));
+//app.use(express.json({ extended: false }));
 
-/*
+
 app.get('/', function(req, res) {
     //res.render('test', enjson)
-    //    res.redirect('/en');
-    res.render('test', { layout: 'main' });
+    res.redirect('/sats.html');
+    //    res.render('test', { layout: 'main' });
 });
-*/
+
 
 app.get('/en', function(req, res) {
-    res.render
+    res.render('test', enjson)
         //    res.render('test', enjson)
 });
 
 app.get('/zh-cn', function(req, res) {
-    res.render('sats', zhcnjson)
+    res.render('test', zhcnjson)
 });
 
 app.get('/zh-hk', function(req, res) {
-    res.render('sats', zhhkjson)
+    res.render('test', zhhkjson)
 });
 
 
