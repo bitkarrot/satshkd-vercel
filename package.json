@@ -4,7 +4,7 @@
     "description": "Deploy express js to vercel.",
     "main": "index.js",
     "engines": {
-        "node": "v15.14.0"
+        "node": "14.x"
     },
     "scripts": {
         "start": "node index.js"
