@@ -61,14 +61,11 @@ app.use(express.static(path.join(__dirname, 'public', 'css')));
 
 
 app.get('/', function(req, res) {
-    //res.render('test', enjson)
-    //    res.render('test', { layout: 'main' });
     res.redirect('/en');
 });
 
 app.get('/en', function(req, res) {
     res.render('sats', enjson)
-        //    res.render('test', enjson)
 });
 
 app.get('/zh-cn', function(req, res) {
@@ -80,7 +77,7 @@ app.get('/zh-hk', function(req, res) {
 });
 
 app.get('/test', (req, res) => {
-    const path = '/en';
+    const path = '/test1';
     res.setHeader('Content-Type', 'text/html');
     res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
     res.end(`Hello! Go to item: <a href="${path}">${path}</a>`);
