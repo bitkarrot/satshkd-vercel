@@ -1,5 +1,6 @@
 const axios = require('axios')
-const fs = require('fs').promises;
+const fs = require('fs');
+
 
 module.exports = {
     bfx: async function() {
@@ -16,16 +17,17 @@ module.exports = {
         return sathkd
     },
 
-    get10yr: async function(lang) {
-        console.log("get10yr language: ", lang)
-        let data = "testing"
+    get10yr: async function() {
+        console.log("get10yr")
         try {
-            const content = await fs.readFile('./public/static/hkd_historical')
+            // const content = await fs.readFile('./public/static/hkd_historical')
+            const content = fs.readFileSync('./public/static/hkd_historical', { encoding: 'utf8' })
+
             const historical = JSON.parse(content)
-                //console.log(historical[0])
             hist_entries = []
-                // get all the years you need from 1 - 10
             let datelist = []
+
+            // get all the years you need from 1 - 10
             for (let i = 1; i < 11; i++) {
                 const y = new Date(new Date().setFullYear(new Date().getFullYear() - i)).toISOString().slice(0, 10)
                 datelist.push(y)
@@ -33,25 +35,20 @@ module.exports = {
             for (let j = 0; j < historical.length; j++) {
                 const hdate = historical[j]['date']
                 if (datelist.includes(hdate)) {
-                    //console.log('hit', hdate, historical[j])
                     hist_entries.push(historical[j])
                 }
             }
             //  console.log(hist_entries)
-
             let final_list = []
             let today_sats = await this.bfx()
-                //            console.log("today sats", today_sats)
             for (var v = 0; v < hist_entries.length; v++) {
-                year = new Date(hist_entries[v]['date']).getFullYear();
+                const date = new Date(hist_entries[v]['date'])
+                year = date.getFullYear();
                 rawsat = hist_entries[v]['sathkd_rate']
                 percentage = (-100 * ((rawsat - today_sats) / rawsat)).toFixed(3)
-                final_list.push({ "year": year, "sats": rawsat, "percentage": percentage });
+                final_list.push({ "year": date.toLocaleDateString(), "sats": rawsat.toLocaleString("en-US"), "percent": percentage });
             }
-            //            console.log(final_list.reverse())
-
-            return true
-                //return final_list.reverse()
+            return final_list.reverse()
         } catch (error) {
             console.error("Error trying to read file ", error)
         }

@@ -16,23 +16,21 @@ const zhcnjson = require('./locales/zh-cn.json');
 const zhhkjson = require('./locales/zh-hk.json');
 const enjson = require('./locales/en.json');
 
-const data = calculate.get10yr('en').then(value => { console.log(value) })
-    //console.log(data)
 
-const pydata = [{ 'year': '1 year ago', 'sats': '1,199 sats', 'percent': '-79.149%' },
-    { 'year': '2 years ago', 'sats': '1,582 sats', 'percent': '-84.197%' },
-    { 'year': '3 years ago', 'sats': '1,958 sats', 'percent': '-87.232%' },
-    { 'year': '4 years ago', 'sats': '2,984 sats', 'percent': '-91.622%' },
-    { 'year': '5 years ago', 'sats': '21,122 sats', 'percent': '-98.816%' },
-    { 'year': '6 years ago', 'sats': '53,632 sats', 'percent': '-99.534%' },
-    { 'year': '7 years ago', 'sats': '40,367 sats', 'percent': '-99.381%' },
-    { 'year': '8 years ago', 'sats': '106,515 sats', 'percent': '-99.765%' },
-    { 'year': '9 years ago', 'sats': '1,016,962 sats', 'percent': '-99.975%' },
-    { 'year': '10 years ago', 'sats': '2,649,533 sats', 'percent': '-99.991%' }
-]
-
-const yeardata = { 'yeardata': pydata }
-    //console.log(yeardata['yeardata'][0])
+// old default for testing
+let pydataold = {
+    'yeardata': [{ 'year': '1 year ago', 'sats': '1,199 ', 'percent': '-79.149' },
+        { 'year': '2 years ago', 'sats': '1,582 ', 'percent': '-84.197' },
+        { 'year': '3 years ago', 'sats': '1,958 ', 'percent': '-87.232' },
+        { 'year': '4 years ago', 'sats': '2,984 ', 'percent': '-91.622' },
+        { 'year': '5 years ago', 'sats': '21,122 ', 'percent': '-98.816' },
+        { 'year': '6 years ago', 'sats': '53,632 ', 'percent': '-99.534' },
+        { 'year': '7 years ago', 'sats': '40,367 ', 'percent': '-99.381' },
+        { 'year': '8 years ago', 'sats': '106,515 ', 'percent': '-99.765' },
+        { 'year': '9 years ago', 'sats': '1,016,962 ', 'percent': '-99.975' },
+        { 'year': '10 years ago', 'sats': '2,649,533 ', 'percent': '-99.991' }
+    ]
+}
 
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views')
@@ -80,25 +78,28 @@ app.get('/', function(req, res) {
 });
 
 app.get('/en', function(req, res) {
-    let endata = Object.assign(enjson, yeardata)
-    res.render('sats', endata)
+    calculate.get10yr().then(pydata => {
+        console.log("get10yr: ", pydata)
+        const yeardata = { 'yeardata': pydata }
+        let endata = Object.assign(enjson, yeardata)
+        res.render('sats', endata)
+    })
 });
 
 app.get('/zh-cn', function(req, res) {
-    let zhcndata = Object.assign(zhcnjson, yeardata)
-    res.render('sats', zhcndata)
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let zhcndata = Object.assign(zhcnjson, yeardata)
+        res.render('sats', zhcndata)
+    })
 });
 
 app.get('/zh-hk', function(req, res) {
-    let zhhkdata = Object.assign(zhhkjson, yeardata)
-    res.render('sats', zhhkdata)
-});
-
-app.get('/test', (req, res) => {
-    const path = '/test1';
-    res.setHeader('Content-Type', 'text/html');
-    res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
-    res.end(`Hello! Go to item: <a href="${path}">${path}</a>`);
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let zhhkdata = Object.assign(zhhkjson, yeardata)
+        res.render('sats', zhhkdata)
+    })
 });
 
 
