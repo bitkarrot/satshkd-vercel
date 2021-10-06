@@ -16,13 +16,8 @@ const zhcnjson = require('./locales/zh-cn.json');
 const zhhkjson = require('./locales/zh-hk.json');
 const enjson = require('./locales/en.json');
 
-
-//calculate.bfx()
-//calculate.get10yr('en')
-
-//const product = require("./api/product");
-//app.use("/api/product", product);
-
+const data = calculate.get10yr('en').then(value => { console.log(value) })
+    //console.log(data)
 
 const pydata = [{ 'year': '1 year ago', 'sats': '1,199 sats', 'percent': '-79.149%' },
     { 'year': '2 years ago', 'sats': '1,582 sats', 'percent': '-84.197%' },
@@ -62,8 +57,6 @@ app.use(logger('dev'));
 // will look for "./public/js/app.js".
 
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(express.static(path.join(__dirname, 'views')));
-//app.use(express.static(path.join(__dirname, 'views/layouts')));
 
 
 // if you wanted to "prefix" you may use
