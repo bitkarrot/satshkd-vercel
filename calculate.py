@@ -3,6 +3,7 @@ import json
 import yaml
 import logging
 import requests
+#import os
 
 logging.basicConfig(filename='satshkd.log', level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logging.getLogger('satslogger').setLevel(level=logging.WARNING)
@@ -86,6 +87,13 @@ def get_bitfinex_rate():
         satDenominator = 100000000
         btcDataURL =  "https://api-pub.bitfinex.com/v2/ticker/tBTCUSD"
 
+        '''
+        cmd = "wget " + btcDataURL
+        print("command: " + cmd)
+        ret = os.system(cmd)
+        print('returned value: ', ret)
+        '''
+
         btcRates = requests.get(btcDataURL).json()
         btcLastPrice = btcRates[6]
 
@@ -94,6 +102,7 @@ def get_bitfinex_rate():
         return sathkd
 
     except Exception as e: 
+        print("Exception" + e )
         logger.info(e)
 
 

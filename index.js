@@ -3,22 +3,26 @@
  * source origin: https://github.com/expressjs/express/tree/master/examples/static-files
  */
 
-var express = require("express");
-var logger = require('morgan');
-var path = require('path');
-var app = express();
-const port = 3000;
-
-//const product = require("./api/product");
-//app.use("/api/product", product);
+const express = require("express");
+const logger = require('morgan');
+const path = require('path');
+const app = express();
 
 const handlebars = require('express-handlebars');
+const port = 3000;
+
+const calculate = require('./calculate')
 const zhcnjson = require('./locales/zh-cn.json');
 const zhhkjson = require('./locales/zh-hk.json');
 const enjson = require('./locales/en.json');
 
-const { spawn } = require('child_process');
-const temperatures = []; // Store readings
+
+//calculate.bfx()
+//calculate.get10yr('en')
+
+//const product = require("./api/product");
+//app.use("/api/product", product);
+
 
 const pydata = [{ 'year': '1 year ago', 'sats': '1,199 sats', 'percent': '-79.149%' },
     { 'year': '2 years ago', 'sats': '1,582 sats', 'percent': '-84.197%' },
