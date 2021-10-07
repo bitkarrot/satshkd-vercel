@@ -4,18 +4,14 @@ const fs = require('fs');
 // this script is to convert the downloaded data 
 // 1. get data from site
 // bitfinex daily close data: https://www.investing.com/crypto/bitcoin/btc-usd-historical-data
-// 2. save as BTC_USD_Bitfinex_HistoricalData.csv
-// 3. convert to the format of historical. using convertformat()
-// check result. 
-
-// 4. pipe result to new_history, concatenate to historical,
-// use mergefiles(), check result
-
+// 2. save as BTC_USD_Bitfinex_HistoricalData.csv, 
+// convert to the format of historical. using convertformat()
+// pipe result to new_history, concatenate to historical,
 // new file is named historical_merged. copy over the public/static/historical
-// convert historical to hkd_historical using other script
-
+// convert historical to hkd_historical
 
 function convertformat() {
+
     const filepath = "./archive/BTC_USD_Bitfinex_HistoricalData.csv"
     let data = []
 
@@ -37,31 +33,54 @@ function convertformat() {
         })
         .on('end', () => {
             // console.log(data)
-            var new_json = JSON.stringify(data)
-            console.log(new_json)
-                // append this to the historical data file. 
-            fs.writeFileSync("./archive/new_history", new_json)
-                // write to regular csv file: 
-                // csvWriter.writeRecords(data).then(() => console.log('CSV file written'))
+            var new_history = JSON.stringify(data)
+            console.log(new_history)
+            fs.writeFileSync("./archive/new_history", new_history)
+            let newh = JSON.parse(new_history).reverse()
+
+            // get original historical data file. concat new dates
+            // no logic handled here for date overlap
+            const historical = "./public/static/historical"
+            const histcontent = fs.readFileSync(historical, { encoding: 'utf8' })
+            let hist = JSON.parse(histcontent)
+
+            const result = JSON.stringify(hist.concat(newh))
+            console.log(result)
+            fs.writeFileSync("./archive/historical_merged", result)
+                // delete old historical
+            fs.copyFile('./archive/historical_merged', './public/static/historical', (err) => {
+                if (err) throw err;
+                console.log('./archive/historical_merged was copied to ./public/static/historical');
+            });
+
         })
 }
 
-function mergefiles() {
-    // merge two files together
-    const newhistory = fs.readFileSync('./archive/new_history', { encoding: 'utf8' })
-    let newh = JSON.parse(newhistory).reverse()
-        //console.log(newh)
+
+function hkdrate() {
+    const hkdusd_rate = 7.75
     const historical = "./public/static/historical"
     const histcontent = fs.readFileSync(historical, { encoding: 'utf8' })
     let hist = JSON.parse(histcontent)
 
-    const result = JSON.stringify(hist.concat(newh))
-    console.log(result)
-    fs.writeFileSync("./archive/historical_merged", result)
+    let hkdData = []
+    hist.forEach(function(entry) {
+        newEntry = {
+            "btcusd_rate": entry['btcusd_rate'],
+            "date": entry['date'],
+            "usdsat_rate": entry['usdsat_rate'],
+            "sathkd_rate": parseInt(entry['usdsat_rate'] / hkdusd_rate).toFixed(0),
+            "btchkd_rate": parseFloat(entry['btcusd_rate'] * hkdusd_rate).toFixed(2),
+        }
+        hkdData.push(newEntry)
+    })
+    console.log(hkdData)
+    const hkdHistorical = JSON.stringify(hkdData)
+    fs.writeFileSync("./public/static/hkd_historical", hkdHistorical)
+
 }
 
+// first run convertformat then run hkdrate
+// convertformat()
 
-//convertformat()
-// run 1st before 2nd command
-
-mergefiles()
+hkdrate()
