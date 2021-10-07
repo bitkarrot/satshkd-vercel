@@ -39,7 +39,7 @@ app.get('/', function(req, res) {
 
 app.get('/en', function(req, res) {
     calculate.get10yr().then(pydata => {
-        console.log("get10yr: ", pydata)
+        // console.log("get10yr: ", pydata)
         const yeardata = { 'yeardata': pydata }
         let endata = Object.assign(enjson, yeardata)
         res.render('sats', endata)
