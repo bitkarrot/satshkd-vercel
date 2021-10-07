@@ -29,7 +29,7 @@ function convertformat() {
             var keys = Object.keys(row)
             var price = row["Price"].replace(',', '')
             let entry = {
-                "btcusd_rate": parseFloat(price).toFixed(2),
+                "btcusd_rate": parseFloat(price),
                 "date": new Date(row[keys[0]]).toISOString().split('T')[0],
                 "usdsat_rate": parseInt((100000000 / parseFloat(price)).toFixed(0))
             }
@@ -61,7 +61,7 @@ function mergefiles() {
 }
 
 
-convertformat()
-    // run 1st before 2nd command
+//convertformat()
+// run 1st before 2nd command
 
-// mergefiles()
+mergefiles()
