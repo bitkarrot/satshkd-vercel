@@ -76,7 +76,7 @@ function hkdrate() {
     })
     console.log(hkdData)
     const hkdHistorical = JSON.stringify(hkdData)
-    fs.writeFileSync("./public/static/hkd_historical", hkdHistorical)
+    fs.writeFileSync("./public/hkd_historical", hkdHistorical)
 
 }
 

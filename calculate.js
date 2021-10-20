@@ -21,8 +21,8 @@ module.exports = {
     get10yr: async function() {
         //        console.log("get10yr")
         try {
-            // const content = await fs.readFile('./public/static/hkd_historical')
-            const content = fs.readFileSync('./public/static/hkd_historical', { encoding: 'utf8' })
+            // const content = await fs.readFile('./public/hkd_historical')
+            const content = fs.readFileSync('./public/hkd_historical', { encoding: 'utf8' })
 
             const historical = JSON.parse(content)
             hist_entries = []
