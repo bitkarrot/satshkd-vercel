@@ -6,4 +6,5 @@ For running on Vercel, note that it uses the vercel version of node which won't 
 
 bitfinex daily close data: https://www.investing.com/crypto/bitcoin/btc-usd-historical-data
 
-TODO: Write cron to update daily close for btcusd & btchkd rates
+see https://github.com/bitkarrot/BTCDailyPoll
+(cron to update daily close for btcusd & btchkd rates)
