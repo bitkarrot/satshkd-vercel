@@ -130,7 +130,7 @@
                 }
             </script>
 
-            <div id='historical'>
+            <div id='hkd_historical'>
             </div>
 
             <div class="container">
@@ -172,6 +172,7 @@
                     } else {
                         var graphHeight = 500;
                     }
+                    console.log("graph height: " , graphHeight)
 
                     var qhLink = function() {
                         window.open('https://en.bitcoin.it/wiki/Controlled_supply', '_blank');
@@ -220,11 +221,11 @@
                         area: true,
                         color: '#FF9900',
                         markers: markers,
-                        target: document.getElementById('historical'),
+                        target: document.getElementById('hkd_historical'),
                         xax_count: 16,
                         yax_count: 12,
                         x_accessor: 'date',
-                        y_accessor: 'usdsat_rate',
+                        y_accessor: 'sathkd_rate',
                         y_scale_type: 'log',
                         y_extended_ticks: true,
                         yax_units: ' sats',
