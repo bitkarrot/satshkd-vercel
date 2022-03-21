@@ -1,10 +1,11 @@
 # This is a basic workflow to help you get started with Actions
+#  Daily job at 04:05 GMT
 
 name: Simple update btc rates
 on:
   push:
   schedule:
-    - cron:  '*/5 * * * *'
+    - cron:  '5 4 * * *'
     
 jobs:
   run:
