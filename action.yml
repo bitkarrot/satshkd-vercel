@@ -8,5 +8,5 @@ inputs:
     description: 'URL to get rate'
     required: true
 runs:
-  using: 'node12'
-  main: 'index.js'
+  using: 'node17'
+  main: 'updaterate.js'
