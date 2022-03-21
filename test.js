@@ -1,6 +1,6 @@
 const core = require('@actions/core');
-const poll = require('./btcpoll.cjs');
-const axios = require('axios');
+const poll = require('./btcpoll');
+//const axios = require('axios');
 
 // modify this to ping url, get data and update, commit and push file to github repo
 try {
