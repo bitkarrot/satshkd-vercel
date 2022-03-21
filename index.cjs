@@ -10,7 +10,7 @@ const app = express();
 const handlebars = require('express-handlebars');
 const port = 3000;
 
-const calculate = require('./calculate')
+const calculate = require('./calculate.cjs')
 const zhcnjson = require('./locales/zh-cn.json');
 const zhhkjson = require('./locales/zh-hk.json');
 const enjson = require('./locales/en.json');

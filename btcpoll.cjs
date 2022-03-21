@@ -62,6 +62,7 @@ async function updateFile() {
 }
 
 module.exports = {
+    
     // start here
     main: async function () {
         console.log("starting btcpoll script for satshkd....")
