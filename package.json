@@ -3,9 +3,6 @@
     "version": "1.0.0",
     "description": "Deploy express js to vercel.",
     "main": "index.js",
-    "engines": {
-        "node": "17.x"
-    },
     "scripts": {
         "start": "node index.js"
     },
@@ -28,5 +25,5 @@
         "express-handlebars": "^5.3.4",
         "moment": "^2.29.1",
         "morgan": "1.9.1"
-    } 
+    }
 }
