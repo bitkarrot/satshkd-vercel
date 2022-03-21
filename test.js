@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const fs = require('fs')
 // const axios = require('axios');
+const fetch = require('node-fetch');
 const moment = require('moment');
 
 const path = require('path');

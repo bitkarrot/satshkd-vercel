@@ -21,12 +21,13 @@
     },
     "homepage": "https://github.com/bitkarrot/satshkd-vercel#readme",
     "dependencies": {
+        "@actions/core": "^1.2.6",
         "axios": "^0.22.0",
         "csv-parser": "^3.0.0",
         "express": "^4.17.1",
         "express-handlebars": "^5.3.4",
+        "moment": "^2.29.1",
         "morgan": "1.9.1",
-        "@actions/core": "^1.2.6",
-        "moment": "^2.29.1"
+        "node-fetch": "^3.2.3"
     }
 }
