@@ -1,5 +1,5 @@
 const fs = require('fs')
-//const axios = require('axios');
+const axios = require('axios');
 const moment = require('moment');
 
 const path = require('path');
@@ -46,8 +46,8 @@ async function BTCDaily() {
 
 // update file in the target github repo
 async function updateFile() {
-    //const row = await BTCDaily()
-    const row = []
+    const row = await BTCDaily()
+    //const row = []
 
     if (Object.keys(row).length > 0) {
         //console.log("dirpath", dirPath)
