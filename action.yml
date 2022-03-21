@@ -1,0 +1,12 @@
+name: 'fetch my custom url and update'
+description: 'fetch url and cron job.'
+branding:
+  icon: 'check-circle'
+  color: 'green'
+inputs:
+  url:
+    description: 'URL to get rate'
+    required: true
+runs:
+  using: 'node12'
+  main: 'index.js'

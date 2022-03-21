@@ -1,0 +1,26 @@
+name: Simple update btc rates
+on:
+  push:
+  schedule:
+    - cron:  '4 5 * * *'
+    
+jobs:
+  run:
+    name: update hkdhistorical
+    runs-on: ubuntu-latest
+    steps:    
+      - name: setup actions
+        uses: actions/checkout@v3
+        with: 
+          node-version: 12.x
+      - name: add and push
+        run: |
+          node updaterate.js
+          date > generated.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "generated"
+          git push
+
+

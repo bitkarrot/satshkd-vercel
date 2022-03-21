@@ -109,3 +109,5 @@ credentials.json
 env
 hkd_one
 hkd_one~
+.DS_Store
+package-lock.json
