@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const fs = require('fs')
-const axios = require('axios');
+// const axios = require('axios');
 const moment = require('moment');
 
 const path = require('path');
