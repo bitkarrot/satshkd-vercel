@@ -19,7 +19,8 @@ jobs:
           node-version: 12.x
       - name: add and push
         run: |
-          npm i 
+          npm install 
+          npm install axios@0.26.1 --save
           node test.js
           date > generated.txt
           git config user.name github-actions
