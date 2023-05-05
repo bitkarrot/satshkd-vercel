@@ -49,8 +49,8 @@
                         </li>
                     </ul>
                     <span class="navbar-item" style="color: #fff">
-           <a class="px-2" href="{{ lang1_link }}" style="color: rgb(6, 168, 231)"> {{ lang1 }} </a> | 
-           <a class="px-2" href="{{ lang2_link }}" style="color: rgb(6, 168, 231)"> {{ lang2 }}</a>   
+           <a class="px-2" href="{{ lang1_link }}" style="color: rgb(6, 168, 231)"> {{ lang1 }} </a> |
+           <a class="px-2" href="{{ lang2_link }}" style="color: rgb(6, 168, 231)"> {{ lang2 }}</a>
          </span>
                 </div>
             </div>
@@ -127,6 +127,7 @@
             </script>
 
             <div id='historical'>
+                <div class="svg-container"></div>
             </div>
 
             <div class="container">
@@ -134,17 +135,17 @@
                 <table class="u-full-width">
                     <thead>
                         <tr>
-                            <th>{{ date }} </th>
-                            <th>{{ price }} </th>
-                            <th>{{ percentchange }} </th>
+                            <th style="text-align:-webkit-left;font-size:2rem;">{{ date }} </th>
+                            <th style="text-align:end;font-size:2rem;">{{ price }}&nbsp;&nbsp;</th>
+                            <th style="text-align:end;font-size:2rem;white-space: pre;"> {{ percentchange }} </th>
                         </tr>
                     </thead>
                     <tbody>
                         {{#each yeardata}}
                         <tr>
-                            <td>{{ this.year }}</td>
-                            <td>{{ this.sats }} sats </td>
-                            <td>{{ this.percent }} % </td>
+                            <td style="text-align:-webkit-left">{{ this.year }}</td>
+                            <td style="text-align:end">{{ this.sats }} sats </td>
+                            <td style="text-align:end">{{ this.percent }} % </td>
                         </tr>
                          {{/each}}
                     </tbody>
@@ -169,6 +170,8 @@
                         var graphHeight = 500;
                     }
                     console.log("graph height: " , graphHeight)
+
+                    var leftMargin = windowWidth < 1200 ? 220 - (1200 - windowWidth) / 2 : 220;
 
                     var qhLink = function() {
                         window.open('https://en.bitcoin.it/wiki/Controlled_supply', '_blank');
@@ -213,11 +216,11 @@
                         data: data,
                         full_width: true,
                         height: graphHeight,
-                        left: 52,
+                        left: 220, // needed to deal with scaling
                         area: true,
                         color: '#FF9900',
                         markers: markers,
-                        target: document.getElementById('historical'),
+                        target: document.querySelector('.svg-container'),
                         xax_count: 16,
                         yax_count: 12,
                         x_accessor: 'date',
@@ -227,6 +230,16 @@
                         yax_units: ' sats',
                         yax_units_append: true,
                     });
+
+                    //setTimeout neccessarily to offset 'left:220' above
+
+                    setTimeout(function() {
+                    var svg = document.querySelector('.svg-container svg');
+                    var containerWidth = document.querySelector('.svg-container').offsetWidth;
+                    var svgWidth = svg.getAttribute('width');
+                    var translateX = -105/*(containerWidth - svgWidth) / 2;*/
+                    svg.setAttribute('transform', 'translate(' + translateX + ', 0)');
+                }, 100);
 
                     $(document).ready(function() {
                         d3.select('svg')
@@ -242,7 +255,7 @@
                         .append('image')
                             .attr('width', '100%')
                             .attr('height', '100%')
-                            .attr('xlink:href', '/static/assets/10hkd.jpg');
+                            .attr('xlink:href', '/static/assets/10hkdresized.png');
 
                         $('svg path')
                             .css('opacity', 1)
@@ -252,5 +265,9 @@
 
                 });
             </script>
-
+<style>
+    .mg-active-datapoint {
+        z-index: 1000;
+    }
+</style>
 </body>
