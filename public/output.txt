@@ -1,0 +1,2 @@
+,btcusd_rate,date,usdsat_rate,sathkd_rate,btchkd_rate
+1970-01-01,0.0858,2010-07-18,1165501166.0,150387247,0.66
