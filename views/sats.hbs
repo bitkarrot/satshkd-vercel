@@ -16,7 +16,11 @@
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
-
+    <style>
+        #historical svg {
+    overflow: visible !important;
+}
+    </style>
 </head>
 
 <body>
@@ -127,7 +131,6 @@
             </script>
 
             <div id='historical'>
-                <div class="svg-container"></div>
             </div>
 
             <div class="container">
@@ -170,8 +173,6 @@
                         var graphHeight = 500;
                     }
                     console.log("graph height: " , graphHeight)
-
-                    var leftMargin = windowWidth < 1200 ? 220 - (1200 - windowWidth) / 2 : 220;
 
                     var qhLink = function() {
                         window.open('https://en.bitcoin.it/wiki/Controlled_supply', '_blank');
@@ -216,11 +217,11 @@
                         data: data,
                         full_width: true,
                         height: graphHeight,
-                        left: 220, // needed to deal with scaling
+                        left: 0,
                         area: true,
                         color: '#FF9900',
                         markers: markers,
-                        target: document.querySelector('.svg-container'),
+                        target: document.getElementById('historical'),
                         xax_count: 16,
                         yax_count: 12,
                         x_accessor: 'date',
@@ -229,17 +230,13 @@
                         y_extended_ticks: true,
                         yax_units: ' sats',
                         yax_units_append: true,
+                        max_y: 1000000000,
                     });
 
-                    //setTimeout neccessarily to offset 'left:220' above
-
-                    setTimeout(function() {
-                    var svg = document.querySelector('.svg-container svg');
-                    var containerWidth = document.querySelector('.svg-container').offsetWidth;
-                    var svgWidth = svg.getAttribute('width');
-                    var translateX = -105/*(containerWidth - svgWidth) / 2;*/
-                    svg.setAttribute('transform', 'translate(' + translateX + ', 0)');
-                }, 100);
+                    d3.selectAll('.mg-y-axis text')
+                    .attr('x', function() {
+                        return parseFloat(d3.select(this).attr('x')) - 50; // Adjust this value to move the y-axis text to the left
+                    });
 
                     $(document).ready(function() {
                         d3.select('svg')
@@ -255,7 +252,7 @@
                         .append('image')
                             .attr('width', '100%')
                             .attr('height', '100%')
-                            .attr('xlink:href', '/static/assets/10hkdresized.png');
+                            .attr('xlink:href', '/static/assets/10hkd.jpg');
 
                         $('svg path')
                             .css('opacity', 1)
