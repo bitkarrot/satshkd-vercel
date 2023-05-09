@@ -16,7 +16,16 @@
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
-
+    <style>
+        #historical svg {
+            overflow: visible !important;
+        }
+        @media screen and (min-width: 393px) and (max-width: 393px) {
+            .mg-y-axis text {
+                transform: translateX(5px);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -49,8 +58,8 @@
                         </li>
                     </ul>
                     <span class="navbar-item" style="color: #fff">
-           <a class="px-2" href="{{ lang1_link }}" style="color: rgb(6, 168, 231)"> {{ lang1 }} </a> | 
-           <a class="px-2" href="{{ lang2_link }}" style="color: rgb(6, 168, 231)"> {{ lang2 }}</a>   
+           <a class="px-2" href="{{ lang1_link }}" style="color: rgb(6, 168, 231)"> {{ lang1 }} </a> |
+           <a class="px-2" href="{{ lang2_link }}" style="color: rgb(6, 168, 231)"> {{ lang2 }}</a>
          </span>
                 </div>
             </div>
@@ -134,17 +143,17 @@
                 <table class="u-full-width">
                     <thead>
                         <tr>
-                            <th>{{ date }} </th>
-                            <th>{{ price }} </th>
-                            <th>{{ percentchange }} </th>
+                            <th style="text-align:-webkit-left;font-size:2rem;">{{ date }} </th>
+                            <th style="text-align:end;font-size:2rem;">{{ price }}&nbsp;&nbsp;</th>
+                            <th style="text-align:end;font-size:2rem;white-space: pre;"> {{ percentchange }} </th>
                         </tr>
                     </thead>
                     <tbody>
                         {{#each yeardata}}
                         <tr>
-                            <td>{{ this.year }}</td>
-                            <td>{{ this.sats }} sats </td>
-                            <td>{{ this.percent }} % </td>
+                            <td style="text-align:-webkit-left">{{ this.year }}</td>
+                            <td style="text-align:end">{{ this.sats }} sats </td>
+                            <td style="text-align:end">{{ this.percent }} % </td>
                         </tr>
                          {{/each}}
                     </tbody>
@@ -213,7 +222,7 @@
                         data: data,
                         full_width: true,
                         height: graphHeight,
-                        left: 52,
+                        left: 0,
                         area: true,
                         color: '#FF9900',
                         markers: markers,
@@ -226,7 +235,9 @@
                         y_extended_ticks: true,
                         yax_units: ' sats',
                         yax_units_append: true,
+                        max_y: 1000000000,
                     });
+
 
                     $(document).ready(function() {
                         d3.select('svg')
