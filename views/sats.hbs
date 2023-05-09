@@ -18,8 +18,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
     <style>
         #historical svg {
-    overflow: visible !important;
-}
+            overflow: visible !important;
+        }
+        @media screen and (min-width: 393px) and (max-width: 393px) {
+            .mg-y-axis text {
+                transform: translateX(5px);
+            }
+        }
     </style>
 </head>
 
@@ -233,10 +238,6 @@
                         max_y: 1000000000,
                     });
 
-                    d3.selectAll('.mg-y-axis text')
-                    .attr('x', function() {
-                        return parseFloat(d3.select(this).attr('x')) - 50; // Adjust this value to move the y-axis text to the left
-                    });
 
                     $(document).ready(function() {
                         d3.select('svg')
