@@ -1,3 +1,28 @@
+```
+import pandas as pd
+import json
+
+with open("hkd_historical") as f:
+    json_data = json.load(f)
+
+data_dict = {d["date"]: d for d in json_data}
+
+df = pd.DataFrame(data_dict.values())
+df["date"] = pd.to_datetime(df["date"], format="%Y-%m-%d")
+df.set_index("date", inplace=True)
+
+min_date = df.index.min()
+max_date = df.index.max()
+all_dates = pd.date_range(start=min_date, end=max_date, freq="D")
+all_dates_df = pd.DataFrame(index=all_dates)
+
+merged_df = pd.merge(all_dates_df, df, how="left", left_index=True, right_index=True)
+
+missing_dates = merged_df[merged_df.isnull().any(axis=1)].index.strftime("%Y-%m-%d").tolist()
+print(f"Missing dates: {missing_dates}")
+
+```
+
 # Importing necessary libraries
 import pandas as pd    # Pandas for data manipulation
 import json             # JSON for reading JSON file
