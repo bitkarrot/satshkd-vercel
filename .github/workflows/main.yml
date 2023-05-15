@@ -3,7 +3,6 @@
 
 name: Simple update btc rates
 on:
-  push:
   schedule:
     - cron:  '5 4 * * *'
     
