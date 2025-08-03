@@ -16,7 +16,7 @@ jobs:
       - name: setup node version
         uses: actions/setup-node@v1
         with:
-          node-version: 18.x
+          node-version: 22.x
       - name: add and push
         run: |
           npm install 
