@@ -2,12 +2,9 @@
 #  Daily job at 04:05 GMT
 
 name: Simple update btc rates
-# on:
-  #schedule:
-  #  - cron:  '5 4 * * *'
 on:
-  push:
-    branches: [ "ci/fix-workflow" ]
+  schedule:
+   - cron:  '5 4 * * *'
     
 jobs:
   run:
