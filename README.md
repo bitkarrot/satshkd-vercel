@@ -10,8 +10,7 @@ cronjob is on github actions, see action.yml
 
 ### Install 
 
-- use at least node 14+ 
-- remove the node_modules directory for your local install  (rm -rf node_modules)
+- use at least node 22+ 
 
 ```
 https://github.com/bitkarrot/satshkd-vercel.git
