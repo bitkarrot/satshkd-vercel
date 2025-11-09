@@ -21,9 +21,10 @@ jobs:
           
       - name: add and push
         run: |
-          npm install 
+          npm install
           npm install axios@0.26.1 --save
           node updaterate.js
+          node updaterate-eur.js
           date > generated.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
