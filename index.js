@@ -19,6 +19,22 @@ const itjson = require('./locales/it.json');
 const nljson = require('./locales/nl.json');
 const ptjson = require('./locales/pt.json');
 const pljson = require('./locales/pl.json');
+const bgjson = require('./locales/bg.json');
+const hrjson = require('./locales/hr.json');
+const csjson = require('./locales/cs.json');
+const dajson = require('./locales/da.json');
+const etjson = require('./locales/et.json');
+const fijson = require('./locales/fi.json');
+const eljson = require('./locales/el.json');
+const hujson = require('./locales/hu.json');
+const gajson = require('./locales/ga.json');
+const lvjson = require('./locales/lv.json');
+const ltjson = require('./locales/lt.json');
+const mtjson = require('./locales/mt.json');
+const rojson = require('./locales/ro.json');
+const skjson = require('./locales/sk.json');
+const sljson = require('./locales/sl.json');
+const svjson = require('./locales/sv.json');
 
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views')
@@ -104,6 +120,134 @@ app.get('/pl', function(req, res) {
         const yeardata = { 'yeardata': pydata }
         let pldata = Object.assign(pljson, yeardata)
         res.render('sats', pldata)
+    })
+});
+
+app.get('/bg', function(req, res) {
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let bgdata = Object.assign(bgjson, yeardata)
+        res.render('sats', bgdata)
+    })
+});
+
+app.get('/hr', function(req, res) {
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let hrdata = Object.assign(hrjson, yeardata)
+        res.render('sats', hrdata)
+    })
+});
+
+app.get('/cs', function(req, res) {
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let csdata = Object.assign(csjson, yeardata)
+        res.render('sats', csdata)
+    })
+});
+
+app.get('/da', function(req, res) {
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let dadata = Object.assign(dajson, yeardata)
+        res.render('sats', dadata)
+    })
+});
+
+app.get('/et', function(req, res) {
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let etdata = Object.assign(etjson, yeardata)
+        res.render('sats', etdata)
+    })
+});
+
+app.get('/fi', function(req, res) {
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let fidata = Object.assign(fijson, yeardata)
+        res.render('sats', fidata)
+    })
+});
+
+app.get('/el', function(req, res) {
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let eldata = Object.assign(eljson, yeardata)
+        res.render('sats', eldata)
+    })
+});
+
+app.get('/hu', function(req, res) {
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let hudata = Object.assign(hujson, yeardata)
+        res.render('sats', hudata)
+    })
+});
+
+app.get('/ga', function(req, res) {
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let gadata = Object.assign(gajson, yeardata)
+        res.render('sats', gadata)
+    })
+});
+
+app.get('/lv', function(req, res) {
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let lvdata = Object.assign(lvjson, yeardata)
+        res.render('sats', lvdata)
+    })
+});
+
+app.get('/lt', function(req, res) {
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let ltdata = Object.assign(ltjson, yeardata)
+        res.render('sats', ltdata)
+    })
+});
+
+app.get('/mt', function(req, res) {
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let mtdata = Object.assign(mtjson, yeardata)
+        res.render('sats', mtdata)
+    })
+});
+
+app.get('/ro', function(req, res) {
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let rodata = Object.assign(rojson, yeardata)
+        res.render('sats', rodata)
+    })
+});
+
+app.get('/sk', function(req, res) {
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let skdata = Object.assign(skjson, yeardata)
+        res.render('sats', skdata)
+    })
+});
+
+app.get('/sl', function(req, res) {
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let sldata = Object.assign(sljson, yeardata)
+        res.render('sats', sldata)
+    })
+});
+
+app.get('/sv', function(req, res) {
+    calculate.get10yr().then(pydata => {
+        const yeardata = { 'yeardata': pydata }
+        let svdata = Object.assign(svjson, yeardata)
+        res.render('sats', svdata)
     })
 });
 

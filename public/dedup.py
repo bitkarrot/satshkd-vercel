@@ -26,10 +26,10 @@ def get_data_from_file(datafile):
     print(duplicated_dates)
     
     # Save the deduplicated data to a new JSON file
-    dedup_file = "hkd_historical_dedup"
+    dedup_file = "historical_dedup"
     dedup_df.to_json(dedup_file, orient="records")
 
 # If this script is run directly, call the get_data_from_file function with the specified file name
 if __name__ == "__main__":
-    datafile = "hkd_historical"
+    datafile = "historical"
     get_data_from_file(datafile)

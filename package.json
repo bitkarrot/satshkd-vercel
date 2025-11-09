@@ -1,7 +1,7 @@
 {
-    "name": "satshkd-vercel",
+    "name": "eursats-vercel",
     "version": "1.0.0",
-    "description": "Deploy express js to vercel.",
+    "description": "EUR/Sats historical chart - Deploy express js to vercel.",
     "main": "index.js",
     "scripts": {
         "start": "node index.js"

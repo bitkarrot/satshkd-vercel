@@ -1,5 +1,5 @@
 <head>
-    <title>HKDSAT</title>
+    <title>EURSAT</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- CSS only -->
@@ -239,25 +239,9 @@
 
 
                     $(document).ready(function() {
-                        d3.select('svg')
-                            .data(data)
-                            .append('defs')
-
-                        .append('pattern')
-                            .attr('id', 'losermoney')
-                            .attr('patternUnits', 'userSpaceOnUse')
-                            .attr('width', '100%')
-                            .attr('height', '100%')
-
-                        .append('image')
-                            .attr('width', '100%')
-                            .attr('height', '100%')
-                            .attr('xlink:href', '/static/assets/10hkd.jpg');
-
                         $('svg path')
                             .css('opacity', 1)
-                            .css('stroke', 'green')
-                            .attr('fill', 'url(#losermoney)');
+                            .css('stroke', 'green');
                     });
 
                 });

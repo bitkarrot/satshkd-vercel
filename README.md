@@ -1,4 +1,4 @@
-## HKDSAT Historical Chart
+## EURSAT Historical Chart
 
 for entertainment and educational purposes only.
 
@@ -8,13 +8,13 @@ bitfinex daily close data: https://www.investing.com/crypto/bitcoin/btc-usd-hist
 
 cronjob is on github actions, see action.yml
 
-### Install 
+### Install
 
-- use at least node 22+ 
+- use at least node 22+
 
 ```
-https://github.com/bitkarrot/satshkd-vercel.git
-cd satshkd-vercel 
+git clone <repository-url>
+cd <repository-directory>
 npm install
 node index.js
 ```

@@ -27,15 +27,15 @@ def get_data_from_file(datafile):
     print(duplicated_dates)
     
     # Save the deduplicated data to a new JSON file
-    dedup_file = "hkd_historical_dedup"
+    dedup_file = "historical_dedup"
     dedup_df.to_json(dedup_file, orient="records")
 
 # If this script is run directly, call the get_data_from_file function with the specified file name
 if __name__ == "__main__":
-    datafile = "hkd_historical"
+    datafile = "historical"
     get_data_from_file(datafile)
 ```
-This code imports the pandas and json libraries, defines a function get_data_from_file that reads in data from a JSON file, removes any duplicate rows, and saves the deduplicated data to a new file. The function is then called on the file "hkd_historical" when the script is run.
+This code imports the pandas and json libraries, defines a function get_data_from_file that reads in data from a JSON file, removes any duplicate rows, and saves the deduplicated data to a new file. The function is then called on the file "historical" when the script is run.
 
 The import pandas as pd statement imports the pandas library and assigns it the alias pd.
 
@@ -61,11 +61,11 @@ The print("Dates that were duplicated and removed:") and `print(d
 
 The print("Dates that were duplicated and removed:") and print(duplicated_dates) statements print the dates that were duplicated and removed from the original DataFrame.
 
-The dedup_file = "hkd_historical_dedup" statement assigns the string "hkd_historical_dedup" to the variable dedup_file.
+The dedup_file = "historical_dedup" statement assigns the string "historical_dedup" to the variable dedup_file.
 
 The dedup_df.to_json(dedup_file, orient="records") statement saves the deduplicated data to a new JSON file with the name specified in dedup_file, using the "records" orientation.
 
 The if __name__ == "__main__": statement checks whether the script is being run directly (as opposed to being imported as a module).
 
-The datafile = "hkd_historical" statement assigns the string "hkd_historical" to the variable datafile.
+The datafile = "historical" statement assigns the string "historical" to the variable datafile.
 The get_data_from_file(datafile) statement calls the get_data_from_file function with datafile as its argument.

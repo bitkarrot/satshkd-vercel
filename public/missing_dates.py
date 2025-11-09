@@ -2,7 +2,7 @@ import pandas as pd
 import json
 
 # Read the JSON data from a local file
-with open("hkd_historical") as f:
+with open("historical") as f:
     json_data = json.load(f)
 
 # Convert the list of dictionaries to a dictionary

@@ -2,7 +2,7 @@
 import pandas as pd
 import json
 
-with open("hkd_historical") as f:
+with open("historical") as f:
     json_data = json.load(f)
 
 data_dict = {d["date"]: d for d in json_data}
@@ -28,7 +28,7 @@ import pandas as pd    # Pandas for data manipulation
 import json             # JSON for reading JSON file
 
 # Read the JSON data from a local file
-with open("hkd_historical") as f:
+with open("historical") as f:
     json_data = json.load(f)   # Reading data from file
 
 # Convert the list of dictionaries to a dictionary

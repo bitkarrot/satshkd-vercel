@@ -1,3 +1,3 @@
-# Documentation for satshkd
+# Documentation for EURSats
 
 - link to .md files here. 

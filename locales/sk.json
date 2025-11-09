@@ -1,0 +1,35 @@
+{
+    "post": {
+        "author": "Janith Kasun",
+        "image": "https://picsum.photos/500/500",
+        "comments": [
+            "This is the first comment",
+            "This is the second comment",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec fermentum ligula. Sed vitae erat lectus."
+        ]
+    },
+    "layout": "main",
+    "Title": "1 euro v súčasnosti stojí ",
+    "subtitle": "EURSAT Historický Výkon",
+    "date": "Dátum",
+    "price": "Cena",
+    "percentchange": "Percentuálna Zmena",
+    "footnote": "zdroj údajov z usdsat.com, prispôsobené pre EUR",
+    "data_file": "historical",
+    "rate_field": "sateur_rate",
+    "exchange_rate": "0.92",
+    "lang1_link": "/en-eur/",
+    "lang1": "English",
+    "lang2_link": "/de/",
+    "lang2": "Deutsch",
+    "lang3_link": "/fr/",
+    "lang3": "Français",
+    "lang4_link": "/es/",
+    "lang4": "Español",
+    "lang5_link": "/it/",
+    "lang5": "Italiano",
+    "lang6_link": "/nl/",
+    "lang6": "Nederlands",
+    "lang7_link": "/pt/",
+    "lang7": "Português"
+}
