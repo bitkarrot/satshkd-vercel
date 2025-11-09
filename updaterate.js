@@ -8,6 +8,6 @@ try {
   core.setOutput('✅ Success');
 
 } catch (error) {
-  core.setFailed(`🛑 ${error.message}`); 
+  core.setFailed(`🛑 ${error.message}`);
 }
 

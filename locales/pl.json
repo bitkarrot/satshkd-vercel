@@ -15,7 +15,7 @@
     "price": "Cena",
     "percentchange": "Zmiana Procentowa",
     "footnote": "źródło danych z usdsat.com, dostosowane dla EUR",
-    "data_file": "eur_historical",
+    "data_file": "historical",
     "rate_field": "sateur_rate",
     "exchange_rate": "0.92",
     "lang1_link": "/en-eur/",

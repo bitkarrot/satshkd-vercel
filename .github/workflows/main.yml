@@ -1,14 +1,14 @@
 # This is a basic workflow to help you get started with Actions
 #  Daily job at 04:05 GMT
 
-name: Simple update btc rates
+name: Update EUR BTC rates
 on:
   schedule:
    - cron:  '5 4 * * *'
-    
+
 jobs:
   run:
-    name: update hkdhistorical
+    name: update eurhistorical
     runs-on: ubuntu-latest
     steps:    
       - name: setup actions
@@ -24,7 +24,6 @@ jobs:
           npm install
           npm install axios@0.26.1 --save
           node updaterate.js
-          node updaterate-eur.js
           date > generated.txt
           git config user.name github-actions
           git config user.email github-actions@github.com
