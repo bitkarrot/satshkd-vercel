@@ -1,0 +1,35 @@
+{
+    "post": {
+        "author": "Janith Kasun",
+        "image": "https://picsum.photos/500/500",
+        "comments": [
+            "This is the first comment",
+            "This is the second comment",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec fermentum ligula. Sed vitae erat lectus."
+        ]
+    },
+    "layout": "main",
+    "Title": "1 Euro ist derzeit wert ",
+    "subtitle": "EURSAT Historische Performance",
+    "date": "Datum",
+    "price": "Preis",
+    "percentchange": "Prozentuale Änderung",
+    "footnote": "Datenquelle von usdsat.com, angepasst für EUR",
+    "data_file": "historical",
+    "rate_field": "sateur_rate",
+    "exchange_rate": "0.92",
+    "lang1_link": "/en-eur/",
+    "lang1": "English",
+    "lang2_link": "/fr/",
+    "lang2": "Français",
+    "lang3_link": "/es/",
+    "lang3": "Español",
+    "lang4_link": "/it/",
+    "lang4": "Italiano",
+    "lang5_link": "/nl/",
+    "lang5": "Nederlands",
+    "lang6_link": "/pt/",
+    "lang6": "Português",
+    "lang7_link": "/pl/",
+    "lang7": "Polski"
+}

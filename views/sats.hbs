@@ -58,8 +58,7 @@
                         </li>
                     </ul>
                     <span class="navbar-item" style="color: #fff">
-           <a class="px-2" href="{{ lang1_link }}" style="color: rgb(6, 168, 231)"> {{ lang1 }} </a> |
-           <a class="px-2" href="{{ lang2_link }}" style="color: rgb(6, 168, 231)"> {{ lang2 }}</a>
+           <a class="px-2" href="{{ lang1_link }}" style="color: rgb(6, 168, 231)"> {{ lang1 }} </a>{{#if lang2}} | <a class="px-2" href="{{ lang2_link }}" style="color: rgb(6, 168, 231)"> {{ lang2 }}</a>{{/if}}{{#if lang3}} | <a class="px-2" href="{{ lang3_link }}" style="color: rgb(6, 168, 231)"> {{ lang3 }}</a>{{/if}}{{#if lang4}} | <a class="px-2" href="{{ lang4_link }}" style="color: rgb(6, 168, 231)"> {{ lang4 }}</a>{{/if}}{{#if lang5}} | <a class="px-2" href="{{ lang5_link }}" style="color: rgb(6, 168, 231)"> {{ lang5 }}</a>{{/if}}{{#if lang6}} | <a class="px-2" href="{{ lang6_link }}" style="color: rgb(6, 168, 231)"> {{ lang6 }}</a>{{/if}}{{#if lang7}} | <a class="px-2" href="{{ lang7_link }}" style="color: rgb(6, 168, 231)"> {{ lang7 }}</a>{{/if}}
          </span>
                 </div>
             </div>
@@ -125,7 +124,7 @@
                         i.forEach(function(item) {
                             if (Array.isArray(item)) {
                                 var btc_price = item[0];
-                                currentPrice = Math.round((1 / btc_price) * 100000000 / 7.75); // satoshis per HKD dollar
+                                currentPrice = Math.round((1 / btc_price) * 100000000 / {{ exchange_rate }}); // satoshis per currency unit
                                 document.title = currentPrice.toLocaleString() + " sats";
                                 document.querySelector('#current').textContent = currentPrice.toLocaleString();
 
@@ -165,7 +164,7 @@
                 </p>
             </div>
             <script>
-                d3.json('/hkd_historical', function(data) {
+                d3.json('/{{ data_file }}', function(data) {
                     data = MG.convert.date(data, 'date');
 
                     var windowWidth = $(window).width();
@@ -230,7 +229,7 @@
                         xax_count: 16,
                         yax_count: 12,
                         x_accessor: 'date',
-                        y_accessor: 'sathkd_rate',
+                        y_accessor: '{{ rate_field }}',
                         y_scale_type: 'log',
                         y_extended_ticks: true,
                         yax_units: ' sats',

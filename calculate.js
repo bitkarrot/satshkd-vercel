@@ -3,7 +3,7 @@ const fs = require('fs');
 
 module.exports = {
     bfx: async function() {
-        const hkdrate = 0.1287 // approximate rate
+        const eurrate = 0.92 // approximate EUR/USD rate
         const btcDataURL = "https://api-pub.bitfinex.com/v2/ticker/tBTCUSD"
         const response = await axios.get(btcDataURL)
         const data = response.data
@@ -13,16 +13,16 @@ module.exports = {
             // see docs : https://docs.bitfinex.com/reference#rest-public-ticker
         btcLastPrice = data[6]
 
-        const sathkd = Math.round((1 / btcLastPrice) * satDenominator * hkdrate)
-            //console.log("bitfinex last price: ", btcLastPrice, "current satHKD: ", sathkd)
-        return sathkd
+        const sateur = Math.round((1 / btcLastPrice) * satDenominator * eurrate)
+            //console.log("bitfinex last price: ", btcLastPrice, "current satEUR: ", sateur)
+        return sateur
     },
 
     get10yr: async function() {
         //        console.log("get10yr")
         try {
-            // const content = await fs.readFile('./public/hkd_historical')
-            const content = fs.readFileSync('./public/hkd_historical', { encoding: 'utf8' })
+            // const content = await fs.readFile('./public/historical')
+            const content = fs.readFileSync('./public/historical', { encoding: 'utf8' })
 
             const historical = JSON.parse(content)
             hist_entries = []
@@ -45,7 +45,7 @@ module.exports = {
             for (var v = 0; v < hist_entries.length; v++) {
                 const date = new Date(hist_entries[v]['date'])
                 year = date.getFullYear();
-                rawsat = hist_entries[v]['sathkd_rate']
+                rawsat = hist_entries[v]['sateur_rate']
                 percentage = (-100 * ((rawsat - today_sats) / rawsat)).toFixed(3)
                 final_list.push({ "year": date.toLocaleDateString(), "sats": rawsat.toLocaleString("en-US"), "percent": percentage });
             }

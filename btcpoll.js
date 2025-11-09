@@ -4,11 +4,11 @@ const moment = require('moment');
 
 const path = require('path');
 const dirPath = path.join(__dirname, ".");
-const fileToWrite = dirPath + "/public/hkd_historical"
-const fileToRead = dirPath + "/public/hkd_historical"
+const fileToWrite = dirPath + "/public/historical"
+const fileToRead = dirPath + "/public/historical"
 
 
-// get btc/usd and btc/hkd daily rate
+// get btc/usd and btc/eur daily rate
 async function BTCDaily() {
     let url = "https://api.coingecko.com/api/v3/coins/bitcoin/history?localization=false&date="
 
@@ -27,17 +27,17 @@ async function BTCDaily() {
             // console.log("full url: ", full_url)
             const data = await response.data;
             const btcusd = data['market_data']['current_price']['usd']
-            const btchkd = data['market_data']['current_price']['hkd']
+            const btceur = data['market_data']['current_price']['eur']
             const satsrate = 100000000
-            const sathkd = parseInt(satsrate / btchkd)
+            const sateur = parseInt(satsrate / btceur)
             const usdsat = parseInt(satsrate / btcusd)
 
             row = {
                 btcusd_rate: parseInt(btcusd),
                 date: dbdate,
                 usdsat_rate: usdsat,
-                sathkd_rate: sathkd,
-                btchkd_rate: parseFloat(btchkd).toFixed(2),
+                sateur_rate: sateur,
+                btceur_rate: parseFloat(btceur).toFixed(2),
             }
             console.log("row data: ", row)
         })
@@ -63,10 +63,10 @@ async function updateFile() {
 }
 
 module.exports = {
-    
+
     // start here
     main: async function () {
-        console.log("starting btcpoll script for satshkd....")
+        console.log("starting btcpoll script for sateur....")
         let result = updateFile();
         console.log(result)
         return true
